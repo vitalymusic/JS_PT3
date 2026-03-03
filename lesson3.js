@@ -104,20 +104,29 @@ function izvaditTabulā(lietotaji){
 izvaditTabulā(lietotaji)
 
 
+// Zarošanās
+
+let age = prompt("Cik jums gadu???");
+
+if(age<18){
+    document.body.innerHTML="Lapas saturs nav pieejams"
+}else{
+    window.location.href = "https://youtube.com";
+}
+
+let vecums = 20;
+
+let statuss = vecums >= 18 ? "Pilngadīgs" : "Nepilngadīgs";
+console.log(statuss);
 
 
+// | Operators | Kad lieto                                            |
+// | --------- | ---------------------------------------------------- |
+// | `&&`      | Nosacījumiem (UN)                                    |
+// | `??`      | Noklusējuma vērtībai tikai ja `null` vai `undefined` |
 
 
-
-
-
-
-
-
-
-
-
-
+// Loģiskais un -> &&  loģiskais or ->|| 
 
 
 
@@ -125,3 +134,4 @@ izvaditTabulā(lietotaji)
 function bigText(text) {
     return text.toUpperCase();
 }
+
