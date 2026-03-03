@@ -20,10 +20,24 @@ textField.oninput = ()=>{
 }
 
 document.body.onkeydown =  (notikums)=>{
-    // console.log(notikums)
-    if(notikums.code=="Space"){
-        document.body.style.background = "red";
+    console.log(notikums)
+    if(notikums.key=="1"){
+
+        document.body.classList.toggle('makeRed')
+         document.body.classList.remove('makeYellow')
+        
     }
+    if(notikums.key=="2"){
+        document.body.classList.add('makeGreen')
+        document.body.classList.remove('makeRed')
+        
+    }
+    if(notikums.key=="3"){
+        document.body.classList.add('makeYellow')
+        document.body.classList.remove('makeGreen')
+        
+    }
+
 }
 
 
