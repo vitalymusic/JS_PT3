@@ -79,6 +79,30 @@ const lietotaji = [
 
 
 
+function izvaditTabulā(lietotaji){
+     let html = `<table border="1" width="50%">`;
+     html+=`
+        <tr>
+            <td>N.p.k.</td>
+            <td>Vārds</td>
+            <td>Uzvārds</td>
+            <td>epasts</td>
+            <td>Vecums</td>
+            <td>Pilsēta</td>
+        </tr>`;
+        for(lietotajs of lietotaji){
+             html+="<tr>"
+                for(lauks in lietotajs){
+                   html+=`<td>${lietotajs[lauks]}</td>` 
+                }
+               html+="</tr>"  
+        }
+         html+="</table>"  
+        document.body.innerHTML+=html
+}
+
+izvaditTabulā(lietotaji)
+
 
 
 
