@@ -7,6 +7,7 @@ let elem1 = document.querySelector('h1')
 let result = document.querySelector('.result')
 let textField = document.querySelector('#teksts')
 let confirmBtn = document.querySelector('#confirmBtn')
+let bilde = document.querySelector('img');
 
 confirmBtn.onclick = ()=>{
     elem1.innerText = textField.value
@@ -40,5 +41,10 @@ document.body.onkeydown =  (notikums)=>{
 
 }
 
+
+bilde.onclick = ()=>{
+   document.body.style.background = `url('${bilde.src}')`
+   bilde.remove()    
+}
 
 
