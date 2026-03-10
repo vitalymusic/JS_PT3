@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h2>Reģistrācija</h2>
+    <form action="" id="registration">
+        <input type="text" name="username" id="username">
+        <input type="password" name="password" id="username">
+        <input type="password" name="password_repeat" id="password_repeat">
+        <input type="email" name="email" id="email">
+        <input type="submit" value="Reģistrēties">
+    </form>
+
+    <script>
+        // formas validācija
+        let error = [false];
+        let passworCheck = /^.*(?=.{8,120})(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,\<\>\/\?\;\:\'\"\\\|\[\]\{\}]).*$/gm;
+        const form = document.querySelector('form#registration');
+        form.onsubmit = (e)=>{
+            e.preventDefault();
+
+            if(form[0].value.length<5){
+                form[0].style.outline = "1px solid red";
+                form[0].insertAdjacentHTML('afterend','<span class="error">Nav ievadīts vārds</span>')
+                error = true;
+            }else{
+                 form[0].style.outline = "none";
+                 form[0].nextSibling.remove();
+                 error = false;
+            }
+
+             if(!form[1].value.match(passworCheck)){
+                form[1].style.outline = "1px solid red";
+                form[1].insertAdjacentHTML('afterend','<span class="error">Nav droša parole</span>')
+                error = true;
+            }else{
+                 form[0].style.outline = "none";
+                 form[0].nextSibling.remove();
+                 error = false;
+            }
+
+
+
+        }
+
+       
+
+
+
+
+    </script>
+</body>
+</html>
