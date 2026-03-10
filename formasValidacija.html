@@ -1,57 +1,88 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="lv">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reģistrācija</title>
+
+<style>
+.error{
+    color:red;
+    font-size:12px;
+    display:block;
+}
+</style>
+
 </head>
 <body>
-    <h2>Reģistrācija</h2>
-    <form action="" id="registration">
-        <input type="text" name="username" id="username">
-        <input type="password" name="password" id="username">
-        <input type="password" name="password_repeat" id="password_repeat">
-        <input type="email" name="email" id="email">
-        <input type="submit" value="Reģistrēties">
-    </form>
 
-    <script>
-        // formas validācija
-        let error = [false];
-        let passworCheck = /^.*(?=.{8,120})(?!.*\s)(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\!\@\#\$\%\^\&\*\(\)\-\=\¡\£\_\+\`\~\.\,\<\>\/\?\;\:\'\"\\\|\[\]\{\}]).*$/gm;
-        const form = document.querySelector('form#registration');
-        form.onsubmit = (e)=>{
-            e.preventDefault();
+<h2>Reģistrācija</h2>
 
-            if(form[0].value.length<5){
-                form[0].style.outline = "1px solid red";
-                form[0].insertAdjacentHTML('afterend','<span class="error">Nav ievadīts vārds</span>')
-                error = true;
-            }else{
-                 form[0].style.outline = "none";
-                 form[0].nextSibling.remove();
-                 error = false;
-            }
+<form action="" id="registration">
+    <input type="text" name="username" id="username" placeholder="Lietotājvārds">
+    <input type="password" name="password" id="password" placeholder="Parole">
+    <input type="password" name="password_repeat" id="password_repeat" placeholder="Atkārtot paroli">
+    <input type="email" name="email" id="email" placeholder="E-pasts">
+    <input type="submit" value="Reģistrēties">
+</form>
 
-             if(!form[1].value.match(passworCheck)){
-                form[1].style.outline = "1px solid red";
-                form[1].insertAdjacentHTML('afterend','<span class="error">Nav droša parole</span>')
-                error = true;
-            }else{
-                 form[0].style.outline = "none";
-                 form[0].nextSibling.remove();
-                 error = false;
-            }
+<script>
 
+const form = document.querySelector('#registration');
 
+const passwordCheck = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{6,}$/;
 
-        }
+function removeError(input){
+    input.style.outline="none";
+    if(input.nextElementSibling && input.nextElementSibling.classList.contains("error")){
+        input.nextElementSibling.remove();
+    }
+}
 
-       
+function showError(input,message){
+    input.style.outline="1px solid red";
+    removeError(input);
+    input.insertAdjacentHTML("afterend", `<span class="error">${message}</span>`);
+}
 
+form.onsubmit = (e)=>{
+    e.preventDefault();
 
+    let error = false;
 
+    const username = form.username;
+    const password = form.password;
+    const repeat = form.password_repeat;
 
-    </script>
+    removeError(username);
+    removeError(password);
+    removeError(repeat);
+
+    // username check
+    if(username.value.length < 5){
+        showError(username,"Vārdam jābūt vismaz 5 simboliem");
+        error = true;
+    }
+
+    // password check
+    if(!passwordCheck.test(password.value)){
+        showError(password,"Parolei jābūt: 6 simboli, A-Z, a-z, 0-9");
+        error = true;
+    }
+
+    // repeat password
+    if(password.value !== repeat.value){
+        showError(repeat,"Paroles nesakrīt");
+        error = true;
+    }
+
+    if(!error){
+        form.submit();
+    }
+
+}
+
+</script>
+
 </body>
 </html>
