@@ -23,21 +23,25 @@
 
 
 
-    <script>
+    <script >
         let valoda = "lv";
+
+
+        let btn1 = document.querySelector('.btn1');
+         let btn2 = document.querySelector('.btn2');
 
         fetch('dati.json')
             .then((data) => { return data.json() })
             .then((data) => { showData(data) })
-            .then(() => getPosts())
+            // .then(() => {getPosts()})
 
 
 
 
         function showData(data) {
-            document.body.innerHTML += `
-                    <h1>${data.lv.sec1.title}</h1>
-                `
+            // document.body.innerHTML += `
+            //         <h1>${data.lv.sec1.title}</h1>
+            //     `
         }
 
 
@@ -58,15 +62,34 @@
                 });
         }
 
-         adrese = "https://api.giphy.com/v1/gifs/trending";
-         adrese2 = "https://api.giphy.com/v1/stickers/trending";
-
         
+         address = {
+            gif:"https://api.giphy.com/v1/gifs/trending",
+            stickers:"https://api.giphy.com/v1/stickers/trending"
+         } 
+
+         
+
+         btn1.onclick = ()=>{
+
+              let limit =  document.querySelector('#limit_number').value;
+              
+              limit>0&&loadImages(address.gif,limit)  
+         }
+
+         btn2.onclick = ()=>{
+              let limit =  document.querySelector('#limit_number').value;
+              limit>0&&loadImages(address.stickers,limit)  
+         }
+
+
+
 
 
         function loadImages(address,limit) {
             gallery = document.querySelector('.gallery');
-
+            gallery.innerHTML = "";
+            
             const giphyKey = "vJ9oqLeP4HeA8Upou4kD6z7FOY9VRs7H";
            
 
