@@ -1,0 +1,16 @@
+{
+    "lv":{
+           "menu":["Galvenā","Par mums","Kontakti"],
+           "sec1":{
+                "title":"Galvenā sadaļa",
+                "text1":"Galvenais teksts"
+           } 
+        },
+    "eng":{
+            "menu":["Main","About Us","Contacts"],
+             "sec1":{
+                "title":"Main ",
+                "text1":"main text"
+           }  
+    }
+}
