@@ -9,7 +9,46 @@
     
 
     <script>
+        let valoda = "lv";
+
         fetch('dati.json')
+            .then((data)=>{return data.json()})
+            .then((data)=>{showData(data)})
+            .then(()=> getPosts())
+
+
+
+
+            function showData(data){
+                document.body.innerHTML +=`
+                    <h1>${data.lv.sec1.title}</h1>
+                `
+            }
+
+
+            function getPosts(){
+                fetch('https://dummyjson.com/posts')
+                .then(res => res.json())
+                .then(data => {
+                    data.posts.forEach((item,i)=>{
+                        document.body.innerHTML+=`
+                            <div>
+                                <h3>${item.title}</h3>
+                                <p>${item.body}</p>
+                            </div>    
+                        `
+                    })
+
+
+                });
+            }
+
+           
+
+
+const giphyKey = "vJ9oqLeP4HeA8Upou4kD6z7FOY9VRs7H";
+
+
 
     </script>
 </body>
